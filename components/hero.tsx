@@ -12,20 +12,23 @@ const searchableContents = [
     title: "Profil & Sejarah Pesantren Hidayatullah Buru",
     category: "Profil",
     href: "#profil",
-    snippet: "Pondok Pesantren Hidayatullah Kabupaten Buru berlokasi di Savanajaya, Waeapo, Buru - Maluku.",
+    keywords: ["profil", "sejarah", "pondok", "pesantren", "hidayatullah", "buru", "savanajaya", "waeapo", "maluku"],
+    snippet: "Pondok Pesantren Hidayatullah Kabupaten Buru berlokasi di Desa Savanajaya, Kecamatan Waeapo, Buru - Maluku.",
   },
   {
     id: "visi",
     title: "Visi: Kampus Miniatur Peradaban Islam",
     category: "Visi & Misi",
     href: "#visi-misi",
+    keywords: ["visi", "peradaban", "islam", "miniatur", "pendidikan", "integral", "tauhid"],
     snippet: "Menjadi Kampus Miniatur Peradaban Islam melalui Pendidikan Integral Berbasis Tauhid.",
   },
   {
     id: "misi",
-    title: "Misi & 5 Fungsi Pesantren",
+    title: "Misi & 5 Fungsi Utama Pesantren",
     category: "Visi & Misi",
     href: "#visi-misi",
+    keywords: ["misi", "fungsi", "jamaah", "dakwah", "dhuafa", "sosial", "kaderisasi"],
     snippet: "Mewujudkan masyarakat berjama'ah, menggerakkan dakwah, dan memberdayakan dhuafa.",
   },
   {
@@ -33,35 +36,40 @@ const searchableContents = [
     title: "Komponen Utama Kurikulum Berbasis Tauhid",
     category: "Kurikulum",
     href: "#kurikulum",
-    snippet: "Kurikulum Nasional (Kurikulum Merdeka/2013), Tahfidz Al-Qur'an UMMI, B. Arab & Inggris.",
+    keywords: ["kurikulum", "merdeka", "2013", "tauhid", "tahfidz", "ummi", "tahsin", "bahasa", "arab", "inggris"],
+    snippet: "Kurikulum Nasional (Kurikulum Merdeka/2013), Tahfidz Al-Qur'an UMMI, B. Arab & Inggris, dan Pengembangan Insani.",
   },
   {
     id: "lembaga",
     title: "Unit Pendidikan Integral (RA, MI, MTs, MA, Tahfizh)",
     category: "Lembaga",
     href: "#lembaga",
-    snippet: "Pendidikan Integral RA, MI, MTs, MA, serta Pembinaan Tahfizh & Rumah Qur'an.",
+    keywords: ["ra", "mi", "mts", "ma", "madrasah", "ibtidaiyah", "tsanawiyah", "aliyah", "tahfizh", "rumah", "quran"],
+    snippet: "Pendidikan Integral RA, MI, MTs, MA, serta Pembinaan Tahfizh & Rumah Qur'an Hidayatullah.",
   },
   {
     id: "galeri",
-    title: "Galeri Foto & Poster Dokumentasi",
+    title: "Galeri Foto & Dokumentasi Kampus",
     category: "Galeri",
     href: "#galeri",
-    snippet: "Dokumentasi foto fisik kawasan kampus, masjid, dan poster resmi Visi Misi.",
+    keywords: ["galeri", "foto", "dokumentasi", "gedung", "masjid", "poster", "infografis", "fasilitas"],
+    snippet: "Dokumentasi foto fisik kawasan kampus, gedung madrasah, masjid, dan poster resmi Visi Misi.",
   },
   {
     id: "psb",
     title: "Pendaftaran Santri Baru (PSB)",
     category: "Pendaftaran",
-    href: "https://wa.me/6285243025306?text=Assalamu'alaikum%20PSB%20Hidayatullah%20Buru",
+    href: "https://wa.me/6285243025306?text=Assalamu'alaikum%20Informasi%20PSB%20Hidayatullah%20Buru",
     isExternal: true,
-    snippet: "Pendaftaran santri baru Pondok Pesantren Hidayatullah Buru via WhatsApp Admin.",
+    keywords: ["psb", "pendaftaran", "santri", "baru", "penerimaan", "syarat", "biaya", "whatsapp"],
+    snippet: "Informasi Pendaftaran Santri Baru Pondok Pesantren Hidayatullah Buru via WhatsApp Admin.",
   },
   {
     id: "lokasi",
     title: "Peta Lokasi Google Maps & Alamat Lengkap",
     category: "Lokasi",
     href: "#lokasi",
+    keywords: ["lokasi", "peta", "maps", "alamat", "waetona", "savanajaya", "waeapo", "buru", "maluku"],
     snippet: "Jl. Waetona RT.02 RW.01 Savanajaya, Waeapo, Kabupaten Buru, Maluku.",
   },
   {
@@ -69,7 +77,8 @@ const searchableContents = [
     title: "Kontak Resmi & Alamat Pengurus",
     category: "Kontak",
     href: "#kontak",
-    snippet: "No HP / WA: 0852 4302 5306 / 0812 4020 7405.",
+    keywords: ["kontak", "telepon", "hp", "wa", "whatsapp", "email", "pengurus", "admin"],
+    snippet: "No HP / WA: 0852 4302 5306 / 0812 4020 7405 | Email: hidayatullahburu@gmail.com.",
   },
 ];
 
@@ -84,7 +93,8 @@ export function Hero() {
       (item) =>
         item.title.toLowerCase().includes(query) ||
         item.category.toLowerCase().includes(query) ||
-        item.snippet.toLowerCase().includes(query)
+        item.snippet.toLowerCase().includes(query) ||
+        item.keywords.some((kw) => kw.toLowerCase().includes(query))
     );
   }, [searchQuery]);
 
