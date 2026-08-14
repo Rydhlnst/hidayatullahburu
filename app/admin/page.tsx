@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/db";
+import { heroSlides, galleryItems, institutions, curriculumItems } from "@/db/schema";
+import { count } from "drizzle-orm";
 import { ImageIcon, Images, Building2, BookOpen, Upload, Cloud } from "lucide-react";
 
 export default async function AdminDashboardOverview() {
-  const heroCount = await prisma.heroSlide.count().catch(() => 3);
-  const galleryCount = await prisma.galleryItem.count().catch(() => 5);
-  const institutionCount = await prisma.institution.count().catch(() => 6);
-  const curriculumCount = await prisma.curriculumItem.count().catch(() => 4);
+  const [{ value: heroCount }] = await db.select({ value: count() }).from(heroSlides).catch(() => [{ value: 3 }]);
+  const [{ value: galleryCount }] = await db.select({ value: count() }).from(galleryItems).catch(() => [{ value: 5 }]);
+  const [{ value: institutionCount }] = await db.select({ value: count() }).from(institutions).catch(() => [{ value: 6 }]);
+  const [{ value: curriculumCount }] = await db.select({ value: count() }).from(curriculumItems).catch(() => [{ value: 4 }]);
 
   return (
     <div className="space-y-8">
@@ -26,9 +28,9 @@ export default async function AdminDashboardOverview() {
             <Cloud className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-bold text-base text-white">Integrasi Cloudflare R2 Object Storage</h3>
+            <h3 className="font-bold text-base text-white">Integrasi Cloudflare R2 Object Storage (Drizzle ORM)</h3>
             <p className="text-xs text-emerald-100/80">
-              Penyimpanan gambar cepat tanpa batas storage server dengan transfer bandwidth gratis.
+              Penyimpanan gambar cepat tanpa batas storage server dengan transfer bandwidth gratis & Drizzle ORM tanpa binary engine Vercel.
             </p>
           </div>
         </div>

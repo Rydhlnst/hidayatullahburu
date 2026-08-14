@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/db";
+import { galleryItems } from "@/db/schema";
+import { desc, eq } from "drizzle-orm";
 import { verifySession } from "@/lib/auth";
 import { deleteFromR2 } from "@/lib/r2";
 
 export async function GET() {
   try {
-    const items = await prisma.galleryItem.findMany({
-      orderBy: { createdAt: "desc" },
-    });
+    const items = await db
+      .select()
+      .from(galleryItems)
+      .orderBy(desc(galleryItems.createdAt));
     return NextResponse.json(items);
   } catch (error) {
     console.error("Fetch gallery error:", error);
@@ -25,14 +28,15 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { title, category, image, caption } = body;
 
-    const item = await prisma.galleryItem.create({
-      data: {
+    const [item] = await db
+      .insert(galleryItems)
+      .values({
         title,
         category: category || "Dokumentasi",
         image,
         caption,
-      },
-    });
+      })
+      .returning();
 
     return NextResponse.json(item);
   } catch (error) {
@@ -55,12 +59,16 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "ID required" }, { status: 400 });
     }
 
-    const item = await prisma.galleryItem.findUnique({ where: { id } });
+    const [item] = await db
+      .select()
+      .from(galleryItems)
+      .where(eq(galleryItems.id, id));
+
     if (item?.image) {
       await deleteFromR2(item.image);
     }
 
-    await prisma.galleryItem.delete({ where: { id } });
+    await db.delete(galleryItems).where(eq(galleryItems.id, id));
 
     return NextResponse.json({ success: true });
   } catch (error) {

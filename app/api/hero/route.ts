@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/db";
+import { heroSlides } from "@/db/schema";
+import { asc, eq } from "drizzle-orm";
 import { verifySession } from "@/lib/auth";
 
 export async function GET() {
   try {
-    const slides = await prisma.heroSlide.findMany({
-      orderBy: { order: "asc" },
-    });
+    const slides = await db
+      .select()
+      .from(heroSlides)
+      .orderBy(asc(heroSlides.order));
     return NextResponse.json(slides);
   } catch (error) {
     console.error("Fetch hero slides error:", error);
@@ -24,14 +27,15 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { title, subtitle, image, order } = body;
 
-    const slide = await prisma.heroSlide.create({
-      data: {
+    const [slide] = await db
+      .insert(heroSlides)
+      .values({
         title,
         subtitle,
         image,
         order: order || 0,
-      },
-    });
+      })
+      .returning();
 
     return NextResponse.json(slide);
   } catch (error) {
@@ -54,9 +58,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "ID required" }, { status: 400 });
     }
 
-    await prisma.heroSlide.delete({
-      where: { id },
-    });
+    await db.delete(heroSlides).where(eq(heroSlides.id, id));
 
     return NextResponse.json({ success: true });
   } catch (error) {
