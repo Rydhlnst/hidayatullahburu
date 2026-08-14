@@ -121,13 +121,13 @@ export function Hero() {
           />
         </motion.div>
 
-        {/* Large Main Heading matching Reference Layout */}
+        {/* Large Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl font-black text-[#224467] tracking-tight uppercase leading-tight mb-3">
+          <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl font-black text-emerald-950 tracking-tight uppercase leading-tight mb-3">
             PONDOK PESANTREN HIDAYATULLAH
             <br />
             KABUPATEN BURU MALUKU
@@ -149,7 +149,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative max-w-xl mx-auto mb-8"
         >
-          <div className="flex border-2 border-[#2c4e75] bg-white shadow-md focus-within:ring-2 focus-within:ring-emerald-600">
+          <div className="flex border-2 border-emerald-800 bg-white shadow-md focus-within:ring-2 focus-within:ring-emerald-600">
             <div className="relative flex-1 flex items-center">
               <input
                 type="text"
@@ -178,7 +178,7 @@ export function Hero() {
                   handleSelectResult(filteredResults[0].href, filteredResults[0].isExternal);
                 }
               }}
-              className="bg-[#2c4e75] hover:bg-[#1f3856] text-white font-bold px-7 py-3 text-sm flex items-center gap-2 transition-colors flex-shrink-0"
+              className="bg-emerald-800 hover:bg-emerald-900 text-white font-bold px-7 py-3 text-sm flex items-center gap-2 transition-colors flex-shrink-0"
             >
               <Search className="w-4 h-4" />
               <span>Search</span>
@@ -192,7 +192,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 5 }}
-                className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 shadow-2xl z-50 text-left overflow-hidden max-h-80 overflow-y-auto"
+                className="absolute top-full left-0 right-0 mt-1 bg-white border border-emerald-200 shadow-2xl z-50 text-left overflow-hidden max-h-80 overflow-y-auto"
               >
                 {filteredResults.length > 0 ? (
                   <div className="divide-y divide-gray-100">
@@ -231,12 +231,12 @@ export function Hero() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Menu Bar Container matching Reference Layout */}
+        {/* Menu Bar Container */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="inline-flex items-center gap-3 bg-[#2c4e75] text-white px-8 py-3 font-bold text-sm sm:text-base shadow-md cursor-pointer hover:bg-[#1f3856] transition-colors"
+          className="inline-flex items-center gap-3 bg-emerald-900 text-white px-8 py-3 font-bold text-sm sm:text-base shadow-md cursor-pointer hover:bg-emerald-950 transition-colors"
           onClick={() => {
             const menuElement = document.querySelector("#profil");
             if (menuElement) {

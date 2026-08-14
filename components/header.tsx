@@ -30,22 +30,22 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Top Utility Bar matching User Reference Layout */}
-      <div className="bg-[#3b597a] text-white text-xs sm:text-sm py-2 px-4 shadow-sm border-b border-[#2d4663]">
-        <div className="container mx-auto flex flex-wrap items-center justify-between gap-3">
+      {/* Top Utility Bar */}
+      <div className="bg-emerald-950 text-white text-xs sm:text-sm border-b border-emerald-900">
+        <div className="container mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a
               href="tel:085243025306"
-              className="flex items-center gap-1.5 hover:text-emerald-200 transition-colors font-medium"
+              className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors font-medium"
             >
-              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-              <span>085243025306</span>
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span>0852-4302-5306</span>
             </a>
             <a
               href="mailto:hidayatullahburu@gmail.com"
-              className="flex items-center gap-1.5 hover:text-emerald-200 transition-colors font-medium"
+              className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors font-medium"
             >
-              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>hidayatullahburu@gmail.com</span>
             </a>
           </div>
@@ -54,10 +54,10 @@ export function Header() {
             href="https://wa.me/6285243025306?text=Assalamu'alaikum%20Hidayatullah%20Buru"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:underline font-bold text-emerald-200"
+            className="flex items-center gap-1.5 bg-emerald-800 hover:bg-emerald-700 px-3 py-1 rounded-none text-xs transition-colors font-medium text-emerald-100"
           >
-            <ThumbsUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span className="underline underline-offset-2">Whatsapp Channel</span>
+            <ThumbsUp className="w-3.5 h-3.5 text-emerald-300" />
+            <span>Whatsapp Channel</span>
           </a>
         </div>
       </div>
