@@ -4,6 +4,8 @@ import { heroSlides } from "@/db/schema";
 import { asc, eq } from "drizzle-orm";
 import { verifySession } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const slides = await db

@@ -5,6 +5,8 @@ import { desc, eq } from "drizzle-orm";
 import { verifySession } from "@/lib/auth";
 import { deleteFromR2 } from "@/lib/r2";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const items = await db
