@@ -11,6 +11,7 @@ import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
 import { Articles } from "@/components/articles";
 import { Footer } from "@/components/footer";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <Articles />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }
